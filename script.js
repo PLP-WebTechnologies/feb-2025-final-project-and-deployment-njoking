@@ -46,39 +46,12 @@ flowerData.forEach(flower => {
                 </label>
             `).join('')}
         </div>
-        <button onclick="addToCart('${flower.name}')">Add to Cart</button>
+        
     `;
     flowerProducts.appendChild(li);
 });
 
 
-// Cart logic
-function addToCart(flowerName) {
-    const qtyInput = document.getElementById(`qty-${flowerName}`);
-    const quantity = parseInt(qtyInput.value);
-    const selectedColors = [...document.querySelectorAll(`input[name="color-${flowerName}"]:checked`)].map(c => c.value);
-
-    if (quantity <= 0 || isNaN(quantity)) {
-        alert("Please enter a valid quantity.");
-        return;
-    }
-
-    if (selectedColors.length === 0) {
-        alert("Please select at least one color.");
-        return;
-    }
-
-    const item = document.createElement("li");
-    item.textContent = `${quantity} x ${flowerName} (${selectedColors.join(", ")})`;
-
-    const removeBtn = document.createElement("button");
-    removeBtn.textContent = "Remove";
-    removeBtn.classList.add("remove-btn");
-    removeBtn.onclick = () => item.remove();
-
-    item.appendChild(removeBtn);
-    cartItems.appendChild(item);
-}
 
 // Slider logic (4 images at a time, auto every 2s)
 let slideIndex = 0;
